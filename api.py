@@ -3,6 +3,7 @@ import re
 import nltk
 from nltk.corpus import stopwords
 import pandas as pd
+import pickle
 
 # Downloading NLTK resources
 nltk.download('stopwords')
@@ -37,6 +38,8 @@ def text_cleaning(text: str):
     final_string = b" ".join(filtered_sentence) #final string of cleaned words
     return pd.Series(final_string.decode('utf8'))
 
+model = pickle.load(open('model.pkl', 'rb'))
+
 app = FastAPI()
 
 @app.post("/data")
@@ -46,4 +49,5 @@ async def first():
 
 @app.post("/clean")
 async def clean_text(text: str):
-    return {"cleaned_text": text_cleaning(text)}
+    prediction = model.predict(text_cleaning(text))
+    return {"prediction": prediction}
