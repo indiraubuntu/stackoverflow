@@ -59,3 +59,5 @@ text_preproc = FunctionTransformer(text_cleaning)
 pipe_preproc = make_pipeline(text_preproc)
 
 pickle.dump(pipe_preproc, open('pipe_preproc.pkl', 'wb'))
+
+

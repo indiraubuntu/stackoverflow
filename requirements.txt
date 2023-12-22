@@ -5,3 +5,4 @@ plotly==5.14.1
 streamlit==1.26.0
 pillow>=7.1.0,<10
 uvicorn==0.15.0
+
